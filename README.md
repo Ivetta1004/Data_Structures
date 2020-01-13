@@ -32,7 +32,7 @@ Methods:
 + bool Contains(object)
 + object [] ToArray().
 
-*Properties Count, First, Last.
+*Properties Count, First, Last.*
 
 ***Doubly linked list***
 
@@ -48,7 +48,7 @@ Methods:
 + ToArray()
 + Clear().
 
-*Properties - Count, First, Last - all are read-only.
+*Properties - Count, First, Last - all are read-only.*
 
 ***Queue***
 
@@ -61,7 +61,7 @@ Methods:
 + object Peek()
 + ToArray().
 
-*Property Count.
+*Property Count.*
 
 ***Stack***
 
@@ -74,4 +74,4 @@ Methods:
 + Push(object)
 + object Pop().
 
-*Property Count.
+*Property Count.*
