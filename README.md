@@ -3,6 +3,7 @@
 ### All structures retain elements of type object.
 
 ***List***
+
 This is a dynamic array, an array that can change its size.
 There should be methods:
 + Add(object)
@@ -19,6 +20,7 @@ Additionally, you can implement the Capacity property.
 Then, in addition to the default constructor, there must be a constructor that accepts Capacity. (Not necessary)
 
 ***Linked list***
+
 Represents elements connected to each other through links to the next element.
 The list contains the first and last elements.
 Methods:
@@ -31,6 +33,7 @@ Methods:
 Properties Count, First, Last.
 
 ***Doubly linked list***
+
 Represents elements connected to each other through links to the next and previous elements.
 The list itself stores the first and last items.
 Methods:
@@ -45,6 +48,7 @@ Methods:
 Properties - Count, First, Last - all are read-only.
 
 ***Queue***
+
 FIFO principle.
 Methods:
 + Enqueue(object)
@@ -56,6 +60,7 @@ Methods:
 Property Count.
 
 ***Stack***
+
 The principle of LIFO.
 Methods:
 + Clear()
