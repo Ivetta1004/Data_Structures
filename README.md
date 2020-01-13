@@ -15,9 +15,9 @@ There should be methods:
 + int IndexOf(object)
 + object [] ToArray()
 + Reverse().
-There should also be an indexer property (read and write) and the Count property (read only).
+*There should also be an indexer property (read and write) and the Count property (read only).
 Additionally, you can implement the Capacity property. 
-Then, in addition to the default constructor, there must be a constructor that accepts Capacity. (Not necessary)
+Then, in addition to the default constructor, there must be a constructor that accepts Capacity. (Not necessary)*
 
 ***Linked list***
 
@@ -30,7 +30,7 @@ Methods:
 + Clear()
 + bool Contains(object)
 + object [] ToArray().
-Properties Count, First, Last.
+*Properties Count, First, Last.
 
 ***Doubly linked list***
 
@@ -45,7 +45,7 @@ Methods:
 + bool Contains(object)
 + ToArray()
 + Clear().
-Properties - Count, First, Last - all are read-only.
+*Properties - Count, First, Last - all are read-only.
 
 ***Queue***
 
@@ -57,7 +57,7 @@ Methods:
 + bool Contains(object)
 + object Peek()
 + ToArray().
-Property Count.
+*Property Count.
 
 ***Stack***
 
@@ -69,4 +69,4 @@ Methods:
 + ToArray()
 + Push(object)
 + object Pop().
-Property Count.
+*Property Count.
