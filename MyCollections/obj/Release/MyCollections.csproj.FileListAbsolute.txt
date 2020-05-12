@@ -1,0 +1,6 @@
+D:\Ivetta\MyProjects\Test\MyCollections\bin\Release\MyCollections.dll
+D:\Ivetta\MyProjects\Test\MyCollections\bin\Release\MyCollections.pdb
+D:\Ivetta\MyProjects\Test\MyCollections\obj\Release\MyCollections.csprojAssemblyReference.cache
+D:\Ivetta\MyProjects\Test\MyCollections\obj\Release\MyCollections.csproj.CoreCompileInputs.cache
+D:\Ivetta\MyProjects\Test\MyCollections\obj\Release\MyCollections.dll
+D:\Ivetta\MyProjects\Test\MyCollections\obj\Release\MyCollections.pdb

@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace MyCollections
 {
-    internal partial class DoublyLinkedList
+    internal partial class DoublyLinkedList<T>
     {
-        public partial class Node
+        public partial class Node<T>
         {
-            public object Value { get; private set; }
-            public Node NextNode { get; internal set; }
-            public Node PrevNode { get; internal set; }
+            public T Value { get; private set; }
+            public Node<T> NextNode { get; internal set; }
+            public Node<T> PrevNode { get; internal set; }
 
-            public Node(object value)
+            public Node(T value)
             {
                 Value = value;
             }

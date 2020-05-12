@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyCollections
 {
-    internal class Stack
+    internal class Stack<T>
     {
-        DoublyLinkedList _items = new DoublyLinkedList();
+        DoublyLinkedList<T> _items = new DoublyLinkedList<T>();
 
         public int Count { get => _items.Count; }
 
@@ -17,12 +17,12 @@ namespace MyCollections
             _items.Clear();
         }
 
-        public bool Contains(object obj)
+        public bool Contains(T obj)
         {
             return _items.Contains(obj);
         }
 
-        public object Peek()
+        public T Peek()
         {
             if (_items.Count == 0)
             {
@@ -31,17 +31,17 @@ namespace MyCollections
             return _items.Last.Value;
         }
 
-        public object[] ToArray()
+        public T[] ToArray()
         {
             return _items.ToArray();
         }
 
-        public void Push(object value)
+        public void Push(T value)
         {
             _items.Add(value);
         }
 
-        public object Pop()
+        public T Pop()
         {
             if (_items.Count == 0)
             {

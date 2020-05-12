@@ -1,0 +1,5 @@
+D:\Ivetta\MyProjects\Test\MyCollections\bin\Debug\MyCollections.dll
+D:\Ivetta\MyProjects\Test\MyCollections\bin\Debug\MyCollections.pdb
+D:\Ivetta\MyProjects\Test\MyCollections\obj\Debug\MyCollections.csproj.CoreCompileInputs.cache
+D:\Ivetta\MyProjects\Test\MyCollections\obj\Debug\MyCollections.dll
+D:\Ivetta\MyProjects\Test\MyCollections\obj\Debug\MyCollections.pdb

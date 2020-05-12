@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyCollections
 {
-    internal class MyList
+    internal class MyList<T>
     {
-        private object[] _array;
+        private T[] _array;
         private int _index;
         private int _capacity = 10;
 
@@ -17,7 +17,7 @@ namespace MyCollections
             get { return _array.Length; }
         }
 
-        public object this[int index]
+        public T this[int index]
         {
             get => _array[index];
             set => _array[index] = value;
@@ -26,20 +26,20 @@ namespace MyCollections
         public MyList(int capacity)
         {
             _capacity = capacity;
-            _array = new object[capacity];
+            _array = new T[capacity];
         }
 
         public MyList() => InitArray();
 
         private void InitArray()
         {
-            _array = new object[_capacity];
+            _array = new T[_capacity];
         }
 
         private void ReInitArray()
         {
-            object[] tempArr = _array;
-            _array = new object[_capacity];
+            T[] tempArr = _array;
+            _array = new T[_capacity];
 
             if (_array != null)
             {
@@ -50,7 +50,7 @@ namespace MyCollections
             }
         }
 
-        public void Add(object obj)
+        public void Add(T obj)
         {
             if (_index == _capacity)
             {
@@ -61,9 +61,9 @@ namespace MyCollections
             _index++;
         }
 
-        public void Insert(int index, object obj)
+        public void Insert(int index, T obj)
         {
-            object[] tempArr = new object[_array.Length + 1];
+            T[] tempArr = new T[_array.Length + 1];
             for (int i = 0; i < index; i++)
             {
                 tempArr[i] = _array[i];
@@ -76,18 +76,18 @@ namespace MyCollections
             _array = tempArr;
         }
 
-        public void Remove(object obj)
+        public void Remove(T obj)
         {
             for (int i = 0; i < _array.Length; i++)
             {
                 if (_array[i].Equals(obj))
-                    _array[i] = null;
+                    _array[i] = default(T);
             }
         }
 
         public void RemoveAt(int index)
         {
-            object[] tempArr = new object[_array.Length - 1];
+            T[] tempArr = new T[_array.Length - 1];
             for (int i = 0; i < index; i++)
             {
                 tempArr[i] = _array[i];
@@ -104,9 +104,9 @@ namespace MyCollections
             InitArray();
         }
 
-        public bool Contains(object obj)
+        public bool Contains(T obj)
         {
-            foreach (object ar in _array)
+            foreach (T ar in _array)
             {
                 if (ar.Equals(obj))
                     return true;
@@ -114,7 +114,7 @@ namespace MyCollections
             return false;
         }
 
-        public int IndexOf(object obj)
+        public int IndexOf(T obj)
         {
             for (int i = 0; i < _array.Length; i++)
             {
@@ -124,9 +124,9 @@ namespace MyCollections
             return -1;
         }
 
-        public object[] ToArray()
+        public T[] ToArray()
         {
-            object[] tempArr = new object[_array.Length];
+            T[] tempArr = new T[_array.Length];
             for (int i = 0; i < tempArr.Length; i++)
             {
                 tempArr[i] = _array[i];
@@ -136,7 +136,7 @@ namespace MyCollections
 
         public void Reverse()
         {
-            object[] tempArr = new object[_array.Length];
+            T[] tempArr = new T[_array.Length];
             for (int i = _array.Length - 1, j = 0; i >= 0; i--, j++)
             {
                 tempArr[j] = _array[i];

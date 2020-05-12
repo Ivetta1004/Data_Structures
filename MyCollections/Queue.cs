@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace MyCollections
 {
-    internal class Queue
+    internal class Queue<T>
     {
-        private DoublyLinkedList _items = new DoublyLinkedList();
+        private DoublyLinkedList<T> _items = new DoublyLinkedList<T>();
 
         public int Count { get => _items.Count; }
 
-        public void Enqueue(object obj)
+        public void Enqueue(T obj)
         {
             _items.Add(obj);
         }
 
-        public object Dequeue()
+        public T Dequeue()
         {
             if (_items.Count == 0)
             {
                 throw new InvalidOperationException("The queue is empty");
             }
-            object result = _items.First.Value;
+            T result = _items.First.Value;
             _items.RemoveFirst();
             return result;
         }
@@ -33,12 +33,12 @@ namespace MyCollections
             _items.Clear();
         }
 
-        public bool Contains(object obj)
+        public bool Contains(T obj)
         {
             return _items.Contains(obj);
         }
 
-        public object Peek()
+        public T Peek()
         {
             if (_items.Count == 0)
             {

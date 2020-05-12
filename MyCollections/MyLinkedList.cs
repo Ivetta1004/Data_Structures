@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,39 +7,43 @@ using System.Threading.Tasks;
 
 namespace MyCollections
 {
-    internal class MyLinkedList
+    public class Node<T>
     {
-        internal class Node
+        public Node(T value)
         {
-            public object Value { get; private set; }
-            public Node NextNode { get; internal set; }
+            Value = value;
         }
+        public T Value { get; private set; }
+        public Node<T> NextNode { get; internal set; }
+    }
 
+    public class MyLinkedList<T> : IEnumerable<T>
+    {
         public int Count { get; private set; }
-        public Node First { get; private set; }
-        public Node Last { get; private set; }
+        public Node<T> First { get; private set; }
+        public Node<T> Last { get; private set; }
 
-        public void Add(object obj)
+        public void Add(T obj)
         {
+            Node<T> node = new Node<T>(obj);
             if (First == null)
             {
-                First = (Node)obj;
+                First = node;
+                Last = node;
             }
-            else if (obj is Node newNode)
+            else
             {
-                Last.NextNode = newNode;
-                Last = newNode;
+                Last.NextNode = node;
+                Last = node;
             }
             Count++;
         }
 
-        public void AddFirst(object obj)
+        public void AddFirst(T obj)
         {
-            if (obj is Node newNode)
-            {
-                newNode.NextNode = First;
-                First = newNode;
-            }
+            Node<T> node = new Node<T>(obj);
+            node.NextNode = First;
+            First = node;
             if (Count == 0)
             {
                 Last = First;
@@ -46,7 +51,7 @@ namespace MyCollections
             Count++;
         }
 
-        public void Insert(Node node, object obj)
+        public void Insert(Node<T> node, T obj) // previous node, we have to insert a new node after a given node
         {
             if (First == null)
             {
@@ -54,13 +59,14 @@ namespace MyCollections
                 Last = node;
                 return;
             }
-            Node currentNode = First;
+            Node<T> currentNode = First;
             do
             {
-                if (currentNode.Equals(node) && obj is Node newNode)
+                if (currentNode.Value.Equals(node.Value))
                 {
-                    newNode.NextNode = currentNode;
-                    currentNode = newNode;
+                    node = new Node<T>(obj);
+                    node.NextNode = currentNode.NextNode;
+                    currentNode.NextNode = node;
                     Count++;
                     break;
                 }
@@ -79,30 +85,62 @@ namespace MyCollections
             Count = 0;
         }
 
-        public bool Contains(object obj)
+        public bool Contains(T obj)
         {
-            Node currentNode = First;
+            Node<T> currentNode = First;
             while (currentNode != null)
             {
-                if (obj.Equals(currentNode))
+                if (currentNode.Value.Equals(obj))
                     return true;
                 currentNode = currentNode.NextNode;
             }
             return false;
         }
 
-        public object[] ToArray()
+        public bool Remove(T obj)
         {
-            Node currentNode = First;
-            Node[] arrayNode = new Node[Count];
-            int i = 0;
+            Node<T> currentNode = First;
+            Node<T> previous = null;
             while (currentNode != null)
             {
-                arrayNode[i] = currentNode;
-                i++;
+                if (currentNode.Value.Equals(obj))
+                {
+                    if (previous != null)
+                    {
+                        previous.NextNode = currentNode.NextNode;
+                        if (currentNode.NextNode == null)
+                            Last = previous;
+                    }
+                    else
+                    {
+                        First = First.NextNode;
+                        if (First == null)
+                        {
+                            Last = null;
+                        }
+                    }
+                    Count--;
+                    return true;
+                }
+                previous = currentNode;
                 currentNode = currentNode.NextNode;
             }
-            return arrayNode;
+            return false;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)this).GetEnumerator();
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            Node<T> currentNode = First;
+            while (currentNode != null)
+            {
+                yield return currentNode.Value;
+                currentNode = currentNode.NextNode;
+            }
         }
     }
 }

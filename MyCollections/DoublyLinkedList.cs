@@ -6,53 +6,51 @@ using System.Threading.Tasks;
 
 namespace MyCollections
 {
-    internal partial class DoublyLinkedList
+    internal partial class DoublyLinkedList<T>
     {
         public int Count { get; private set; }
-        public Node First { get; private set; }
-        public Node Last { get; private set; }
+        public Node<T> First { get; private set; }
+        public Node<T> Last { get; private set; }
 
-        public void Add(object obj)
+        public void Add(T obj)
         {
-            if (Count == 0)
+            Node<T> node = new Node<T>(obj);
+            if (First == null)
             {
-                First = (Node)obj;
-            }
-            if (obj is Node newNode)
-            {
-                Last.NextNode = newNode;
-                newNode.PrevNode = Last;
-            }
-            Last = (Node)obj;
-            Count++;
-        }
-
-        public void AddFirst(object obj)
-        {
-            Node currentNode = First;
-            if (obj is Node newNode)
-            {
-                First.NextNode = currentNode;
-                First = newNode;
-            }
-            if (Count == 0)
-            {
-                Last = First;
+                First = node;
+                Last = node;
             }
             else
             {
-                currentNode.PrevNode = First;
+                node.PrevNode = Last;
+                Last.NextNode = node;
+                Last = node;
+                node.NextNode = null;
             }
             Count++;
         }
 
-        public void Remove(object obj)
+        public void AddFirst(T obj)
         {
-            Node previous = null;
-            Node current = First;
+            Node<T> node = new Node<T>(obj);
+            node.NextNode = First;
+            node.PrevNode = null;
+            if (First != null)
+            {
+                First.PrevNode = node;
+            }
+            First = node;
+            Count++;
+        }
+
+        public void Remove(T obj)
+        {
+            Node<T> previous = null;
+            Node<T> current = First;
+            Node<T> newNode = new Node<T>(obj);
             while (current != null)
             {
-                if (current == obj)
+                if (current.Value.Equals(newNode.Value))
                 {
                     if (previous != null)
                     {
@@ -114,10 +112,10 @@ namespace MyCollections
 
         public bool Contains(object obj)
         {
-            Node currentNode = First;
+            Node<T> currentNode = First;
             while (currentNode != null)
             {
-                if (obj is Node newNode)
+                if (currentNode.Value.Equals(obj))
                 {
                     return true;
                 }
@@ -126,11 +124,11 @@ namespace MyCollections
             return false;
         }
 
-        public object[] ToArray()
+        public T[] ToArray()
         {
-            object[] array = new object[Count];
+            T[] array = new T[Count];
             int index = 0;
-            Node currentNode = First;
+            Node<T> currentNode = First;
             while (currentNode != null)
             {
                 array[index] = currentNode.Value;
@@ -148,3 +146,4 @@ namespace MyCollections
         }
     }
 }
+
